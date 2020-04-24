@@ -16,23 +16,24 @@ const collections = [
     "id": 1,
     "idnumber": "7711225111083",
     "reference": "99",
-    "opendate": 24/04/2020,
+    "opendate": "24/04/2020",
     "firstname": "Joe",
     "surname": "Bloggs",
     "cellnumber": "084 111 1234",
     "amount": 1000,
-    "notes": ""
+    "notes": ["notes"],
+    "author": ""
   },
   {
     "id": 2,
     "idnumber": "8804112111083",
     "reference": "99",
-    "opendate": 12/07/2019,
+    "opendate": "12/07/2019",
     "firstname": "Susan",
     "surname": "Storm",
     "cellnumber": "084 222 1234",
     "amount": 1456,
-    "notes": "",
+    "notes": ["notes"],
     "author": ""
   }
 ];
@@ -66,7 +67,7 @@ app.get('/', (req, res) => {
   res.send(cs);
 });
 
-// get a specific collection records
+// get a specific collection record
 app.get('/:id', (req, res) => {
   const collection = collections.filter(c => (c.id === parseInt(req.params.id)));
   if (collection.length > 1) return res.status(500).send();
@@ -103,15 +104,17 @@ const checkJwt = jwt({
 });*/
 
 // insert a new note to a record
-app.post('/note/:id', checkJwt, (req, res) => {
-  const {note} = req.body;
+app.post('/update/:id', checkJwt, (req, res) => {
+  const {update} = req.body;
 
   const collection = collections.filter(c => (c.id === parseInt(req.params.id)));
   if (collection.length > 1) return res.status(500).send();
   if (collection.length === 0) return res.status(404).send();
 
+  console.log('update: ', update);
+
   collection[0].notes.push({
-    note,
+    update,
     author: req.user.name,
   });
 
