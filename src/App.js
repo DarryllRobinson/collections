@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import {Route, withRouter} from 'react-router-dom';
+import auth0Client from './Auth/Auth';
+import NavBar from './NavBar/NavBar';
+import Callback from './Callback/Callback';
+import Collections from './Collections/Collections';
+import SecuredRoute from './SecuredRoute/SecuredRoute';
 
-function App() {
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checkingSession: true,
+    }
+  }
+
+  async componentDidMount() {
+    if (this.props.location.pathname === '/callback') return;
+    try {
+      await auth0Client.silentAuth();
+      this.forceUpdate();
+    } catch (err) {
+      if (err.error !== 'login_required') console.log(err.error);
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <NavBar/>
+        <Route exact path='/callback' component={Callback}/>
+        <SecuredRoute exact path='/collections'
+          component={CollectionsComponent}
+          checkingSession={this.state.checkingSession}
+        />
+      </div>
+    );
+  }
+}
+
+const CollectionsComponent = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Collections {...props}
+    />
   );
 }
 
-export default App;
+export default withRouter(App);
