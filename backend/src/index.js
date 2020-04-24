@@ -21,7 +21,7 @@ const collections = [
     "surname": "Bloggs",
     "cellnumber": "084 111 1234",
     "amount": 1000,
-    "notes": ["notes"],
+    "notes": ["notes","even more notes"],
     "author": ""
   },
   {

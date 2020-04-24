@@ -35,17 +35,18 @@ class App extends Component {
         <NavBar/>
         {/*<Route exact path='/' component={Welcome}/>*/}
         <Route exact path='/callback' component={Callback}/>
-        <Route exact path='/collection/:collectionId' component={Collection}/>
-        <Route exact path='/collections' component={CollectionsComponent}/>
-
         {/*<SecuredRoute exact path='/collections'
           component={CollectionsComponent}
           checkingSession={this.state.checkingSession}
         />
         <SecuredRoute exact path='/collection/:collectionId'
-          component={Collection}
+          component={CollectionComponent}
           checkingSession={this.state.checkingSession}
         />*/}
+
+        <Route exact path='/collections' component={CollectionsComponent}/>
+        <Route exact path='/collection/:collectionId' component={CollectionComponent}/>
+
       </div>
     );
   }
@@ -54,6 +55,13 @@ class App extends Component {
 const CollectionsComponent = (props) => {
   return (
     <Collections {...props}
+    />
+  );
+}
+
+const CollectionComponent = (props) => {
+  return (
+    <Collection {...props}
     />
   );
 }
