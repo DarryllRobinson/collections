@@ -16,6 +16,10 @@ function NavBar(props) {
     props.history.replace('/accounts');
   }
 
+  const customers = () => {
+    props.history.replace('/customers');
+  }
+
   return (
     <nav className="navbar navbar-dark bg-primary fixed-top">
       <Link className="navbar-brand" to="/">
@@ -31,6 +35,7 @@ function NavBar(props) {
           <label className="mr-2 text-white">{auth0Client.getProfile().nickname}</label>
           <button className="btn btn-dark" onClick={() => {collections()}}>Collections</button>
           <button className="btn btn-dark" onClick={() => {accounts()}}>Accounts</button>
+          <button className="btn btn-dark" onClick={() => {customers()}}>Customers</button>
           <button className="btn btn-dark" onClick={() => {signOut()}}>Sign Out</button>
         </div>
       }

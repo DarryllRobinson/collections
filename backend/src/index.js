@@ -11,11 +11,11 @@ const jwksRsa = require('jwks-rsa');
 const app = express();
 
 // the database
-// Account
+// Accounts
 const accounts = [
   {
     "id": 1,
-    "CustomerShortCode": "shortcode",
+    "CustomerShortCode": "custshortcode",
     "AccountNumber": "acc1",
     "DebtorAge": 10,
     "PaymentTermDays": 30,
@@ -37,6 +37,31 @@ const accounts = [
     "LastPTPAmount": 0,
     "AccountNotes": "",
     "NextVisitDate": "",
+    "CurrentStatus": "Active",
+    "DateCreated": "03/01/2020",
+    "CreatedBy": "Adrian",
+    "DateLastUpdated": "25/04/2020",
+    "LastUpdatedBy": "Darryll"
+  }
+]
+
+const customers = [
+  {
+    "id": 1,
+    "OperatorShortCode": "opshortcode",
+    "CustomerShortCode": "custshortcode",
+    "CustomerEntity": "Consumer",
+    "CustomerName": "custname",
+    "FirstName": "Stephen",
+    "Surname": "Strange",
+    "NationalIDNumber": "123456789012345",
+    "CompanyRegNumber": "",
+    "ContactNumber": "0123",
+    "EmailAddress": "email@email.com",
+    "Classification": "classification",
+    "Category": "category",
+    "Region": "region",
+    "Sector": "sector",
     "CurrentStatus": "Active",
     "DateCreated": "03/01/2020",
     "CreatedBy": "Adrian",
@@ -84,7 +109,34 @@ app.use(cors());
 // log HTTP requests
 //app.use(morgan('combined'));
 
-// retrieve all questions
+// retrieve all customers
+app.get('/', (req, res) => {
+  const ccs = customers.map(cc => ({
+    id: cc.id,
+    OperatorShortCode: cc.OperatorShortCode,
+    CustomerShortCode: cc.CustomerShortCode,
+    CustomerEntity: cc.CustomerEntity,
+    CustomerName: cc.CustomerName,
+    FirstName: cc.FirstName,
+    Surname: cc.Surname,
+    NationalIDNumber: cc.NationalIDNumber,
+    CompanyRegNumber: cc.CompanyRegNumber,
+    ContactNumber: cc.ContactNumber,
+    EmailAddress: cc.EmailAddress,
+    Classification: cc.Classification,
+    Category: cc.Category,
+    Region: cc.Region,
+    Sector: cc.Sector,
+    CurrentStatus: cc.CurrentStatus,
+    DateCreated: cc.DateCreated,
+    CreatedBy: cc.CreatedBy,
+    DateLastUpdated: cc.DateLastUpdated,
+    LastUpdatedBy: cc.LastUpdatedBy
+  }));
+  res.send(ccs);
+});
+
+// retrieve all accounts
 app.get('/', (req, res) => {
   const accs = accounts.map(acc => ({
     id: acc.id,

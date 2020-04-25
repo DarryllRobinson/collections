@@ -5,6 +5,7 @@ import NavBar from './NavBar/NavBar';
 import Callback from './Callback/Callback';
 import Collections from './Collections/Collections';
 import Accounts from './Accounts/Accounts';
+import Customers from './Customers/Customers';
 import Collection from './Collection/Collection';
 import SecuredRoute from './SecuredRoute/SecuredRoute';
 import Welcome from './Welcome/Welcome';
@@ -53,6 +54,7 @@ class App extends Component {
         <Route exact path='/collections' component={CollectionsComponent}/>
         <Route exact path='/collection/:collectionId' component={CollectionComponent}/>
         <Route exact path='/accounts' component={AccountsComponent}/>
+        <Route exact path='/customers' component={CustomersComponent}/>
 
       </div>
     );
@@ -76,6 +78,13 @@ const CollectionComponent = (props) => {
 const AccountsComponent = (props) => {
   return (
     <Accounts {...props}
+    />
+  );
+}
+
+const CustomersComponent = (props) => {
+  return (
+    <Customers {...props}
     />
   );
 }
