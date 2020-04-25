@@ -8,14 +8,6 @@ function NavBar(props) {
     props.history.replace('/');
   };
 
-  const collections = () => {
-    props.history.replace('/collections');
-  }
-
-  const accounts = () => {
-    props.history.replace('/accounts');
-  }
-
   const customers = () => {
     props.history.replace('/customers');
   }
@@ -33,8 +25,6 @@ function NavBar(props) {
         auth0Client.isAuthenticated() &&
         <div>
           <label className="mr-2 text-white">{auth0Client.getProfile().nickname}</label>
-          <button className="btn btn-dark" onClick={() => {collections()}}>Collections</button>
-          <button className="btn btn-dark" onClick={() => {accounts()}}>Accounts</button>
           <button className="btn btn-dark" onClick={() => {customers()}}>Customers</button>
           <button className="btn btn-dark" onClick={() => {signOut()}}>Sign Out</button>
         </div>

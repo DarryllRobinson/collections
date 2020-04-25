@@ -5,7 +5,9 @@ import NavBar from './NavBar/NavBar';
 import Callback from './Callback/Callback';
 import Collections from './Collections/Collections';
 import Accounts from './Accounts/Accounts';
+import Account from './Account/Account';
 import Customers from './Customers/Customers';
+import Customer from './Customer/Customer';
 import Collection from './Collection/Collection';
 import SecuredRoute from './SecuredRoute/SecuredRoute';
 import Welcome from './Welcome/Welcome';
@@ -55,6 +57,8 @@ class App extends Component {
         <Route exact path='/collection/:collectionId' component={CollectionComponent}/>
         <Route exact path='/accounts' component={AccountsComponent}/>
         <Route exact path='/customers' component={CustomersComponent}/>
+        {/*<Route exact path='/customer/:accountId' component={CustomerAccountComponent}/>*/}
+        <Route exact path='/customer/:customerId' component={CustomerComponent}/>
 
       </div>
     );
@@ -85,6 +89,20 @@ const AccountsComponent = (props) => {
 const CustomersComponent = (props) => {
   return (
     <Customers {...props}
+    />
+  );
+}
+
+const CustomerComponent = (props) => {
+  return (
+    <Customer {...props}
+    />
+  );
+}
+
+const CustomerAccountComponent = (props) => {
+  return (
+    <Account {...props}
     />
   );
 }

@@ -41,7 +41,8 @@ const accounts = [
     "DateCreated": "03/01/2020",
     "CreatedBy": "Adrian",
     "DateLastUpdated": "25/04/2020",
-    "LastUpdatedBy": "Darryll"
+    "LastUpdatedBy": "Darryll",
+    "CustomerId": 1
   }
 ]
 
@@ -61,6 +62,28 @@ const customers = [
     "Classification": "classification",
     "Category": "category",
     "Region": "region",
+    "Sector": "sector",
+    "CurrentStatus": "Active",
+    "DateCreated": "03/01/2020",
+    "CreatedBy": "Adrian",
+    "DateLastUpdated": "25/04/2020",
+    "LastUpdatedBy": "Darryll"
+  },
+  {
+    "id": 2,
+    "OperatorShortCode": "opshortcode",
+    "CustomerShortCode": "custshortcode",
+    "CustomerEntity": "Consumer",
+    "CustomerName": "custname",
+    "FirstName": "Thor",
+    "Surname": "Odinson",
+    "NationalIDNumber": "234567890123456",
+    "CompanyRegNumber": "",
+    "ContactNumber": "1234",
+    "EmailAddress": "thor@email.com",
+    "Classification": "classification",
+    "Category": "category",
+    "Region": "Asgard",
     "Sector": "sector",
     "CurrentStatus": "Active",
     "DateCreated": "03/01/2020",
@@ -166,18 +189,36 @@ app.get('/', (req, res) => {
     DateCreated: acc.DateCreated,
     CreatedBy: acc.CreatedBy,
     DateLastUpdated: acc.DateLastUpdated,
-    LastUpdatedBy: acc.LastUpdatedBy
+    LastUpdatedBy: acc.LastUpdatedBy,
+    CustomerId: acc.CustomerId
   }));
   res.send(accs);
 });
 
 // get a specific collection record
-app.get('/:id', (req, res) => {
+/*app.get('/:id', (req, res) => {
   const collection = collections.filter(c => (c.id === parseInt(req.params.id)));
   if (collection.length > 1) return res.status(500).send();
   if (collection.length === 0) return res.status(404).send();
   res.send(collection[0]);
+});*/
+
+// get a specific customer record
+app.get('/:id', (req, res) => {
+  const customer = customers.filter(c => (c.id === parseInt(req.params.id)));
+  console.log(req.params);
+  if (customer.length > 1) return res.status(500).send();
+  if (customer.length === 0) return res.status(404).send();
+  res.send(customer[0]);
 });
+
+// get a specific account
+/*app.get('/:id', (req, res) => {
+  const account = accounts.filter(c => (c.id === parseInt(req.params.id)));
+  if (account.length > 1) return res.status(500).send();
+  if (account.length === 0) return res.status(404).send();
+  res.send(account[0]);
+});*/
 
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
