@@ -18,12 +18,12 @@ class Collection extends Component {
   }
 
   async refreshCollection() {
-    console.log('this.props: ', this.props);
-    /*const { match: { params } } = this.props;
+    //console.log('this.props: ', this.props);
+    const { match: { params } } = this.props;
     const collection = (await axios.get(`http://localhost:8081/${params.collectionId}`)).data;
     this.setState({
-      collection
-    });*/
+      collection,
+    });
   }
 
   async submitUpdate(update){
@@ -45,12 +45,13 @@ class Collection extends Component {
           <div className="jumbotron col-12">
             <h1 className="display-3">{collection.firstname}</h1>
             <p className="lead">{collection.surname}</p>
+            <p className="lead">reference: {collection.reference}</p>
             <hr className="my-4" />
             <SubmitUpdate collectionId={collection.id} submitUpdate={this.submitUpdate} />
             <p>Notes</p>
             {
               collection.notes.map((note, idx) => (
-                <p className="lead" key={idx}>{note}</p>
+                <p className="lead" key={idx}>{note.update}</p>
               ))
             }
           </div>

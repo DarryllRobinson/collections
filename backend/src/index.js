@@ -11,6 +11,40 @@ const jwksRsa = require('jwks-rsa');
 const app = express();
 
 // the database
+// Account
+const account = [
+  {
+    "id": 1,
+    "CustomerShortCode": "shortcode",
+    "AccountNumber": "acc1",
+    "DebtorAge": 10,
+    "PaymentTermDays": 30,
+    "CreditLimit": 3000,
+    "TotalBalance": 2500,
+    "AmountDue": 1350,
+    "CurrentBalance": 1700,
+    "30Days": 400,
+    "60Days": 500,
+    "90Days": 600,
+    "120Days": 300,
+    "150Days": 0,
+    "180Days": 0,
+    "PaymentMethod": "EFT",
+    "PaymentDueDate": 2,
+    "DebitOrderDate": 2,
+    "LastPaymentDate": "02/03/2020",
+    "LastPTPDate": "",
+    "LastPTPAmount": 0,
+    "AccountNotes": "",
+    "NextVisitDate": "",
+    "CurrentStatus": "Active",
+    "DateCreated": "03/01/2020",
+    "CreatedBy": "Adrian",
+    "DateLastUpdated": "25/04/2020",
+    "LastUpdatedBy": "Darryll"
+  }
+]
+
 const collections = [
   {
     "id": 1,
@@ -21,7 +55,7 @@ const collections = [
     "surname": "Bloggs",
     "cellnumber": "084 111 1234",
     "amount": 1000,
-    "notes": ["notes","even more notes"],
+    "notes": [],
     "author": ""
   },
   {
@@ -33,7 +67,7 @@ const collections = [
     "surname": "Storm",
     "cellnumber": "084 222 1234",
     "amount": 1456,
-    "notes": ["notes"],
+    "notes": [],
     "author": ""
   }
 ];
@@ -112,10 +146,10 @@ app.post('/update/:id', checkJwt, (req, res) => {
   if (collection.length === 0) return res.status(404).send();
 
   console.log('update: ', update);
+  console.log('req.user.name: ', req.user.name);
 
   collection[0].notes.push({
-    update,
-    author: req.user.name,
+    update
   });
 
   res.status(200).send();

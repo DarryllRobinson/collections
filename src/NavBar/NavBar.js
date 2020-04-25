@@ -15,7 +15,7 @@ function NavBar(props) {
   return (
     <nav className="navbar navbar-dark bg-primary fixed-top">
       <Link className="navbar-brand" to="/">
-        Collections
+        SABCo Collections
       </Link>
       {
         !auth0Client.isAuthenticated() &&

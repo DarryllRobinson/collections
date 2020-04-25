@@ -6,6 +6,7 @@ import Callback from './Callback/Callback';
 import Collections from './Collections/Collections';
 import Collection from './Collection/Collection';
 import SecuredRoute from './SecuredRoute/SecuredRoute';
+import Welcome from './Welcome/Welcome';
 
 class App extends Component {
   constructor(props) {
@@ -33,16 +34,20 @@ class App extends Component {
     return (
       <div>
         <NavBar/>
+        <Route exact path='/' component={Welcome} />
         {/*<Route exact path='/' component={Welcome}/>*/}
         <Route exact path='/callback' component={Callback}/>
-        {/*<SecuredRoute exact path='/collections'
+
+        {/*
+        <SecuredRoute exact path='/collections'
           component={CollectionsComponent}
           checkingSession={this.state.checkingSession}
         />
         <SecuredRoute exact path='/collection/:collectionId'
           component={CollectionComponent}
           checkingSession={this.state.checkingSession}
-        />*/}
+        />
+        */}
 
         <Route exact path='/collections' component={CollectionsComponent}/>
         <Route exact path='/collection/:collectionId' component={CollectionComponent}/>
