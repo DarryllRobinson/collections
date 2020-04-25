@@ -32,6 +32,17 @@ class Customers extends Component {
     return count;
   }
 
+  countOverdueAccounts(custid) {
+    const accounts = this.state.accounts;
+    let count = 0;
+    accounts.forEach(function(element) {
+      if (element.CustomerId === custid && element.CurrentStatus !== "Active") {
+        count = count + 1;
+      }
+    });
+    return count;
+  }
+
   render() {
     return (
       <div className="container">
@@ -44,7 +55,7 @@ class Customers extends Component {
                   <div className="card text-white bg-primary mb-3">
                     <div className="card-header">
                       <p>Accounts: {this.countAccounts(customer.id)}</p>
-                      <p>Overdue accounts: {customer.id}</p>
+                      <p>Overdue accounts: {this.countOverdueAccounts(customer.id)}</p>
                     </div>
                     <div className="card-body">
                       <h4 className="card-title">Current status: {customer.CurrentStatus}</h4>

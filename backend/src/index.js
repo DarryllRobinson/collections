@@ -37,7 +37,7 @@ const accounts = [
     "LastPTPAmount": 0,
     "AccountNotes": "",
     "NextVisitDate": "",
-    "CurrentStatus": "Active",
+    "CurrentStatus": "Soft Locked",
     "DateCreated": "03/01/2020",
     "CreatedBy": "Adrian",
     "DateLastUpdated": "25/04/2020",
