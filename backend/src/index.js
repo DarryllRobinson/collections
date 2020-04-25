@@ -125,7 +125,7 @@ const customers = [
     "Category": "category",
     "Region": "region",
     "Sector": "sector",
-    "CurrentStatus": "Active",
+    "CurrentStatus": "Locked",
     "DateCreated": "03/01/2020",
     "CreatedBy": "Adrian",
     "DateLastUpdated": "25/04/2020",

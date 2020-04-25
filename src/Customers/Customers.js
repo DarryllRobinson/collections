@@ -43,6 +43,17 @@ class Customers extends Component {
     return count;
   }
 
+  listOfAccounts(custid) {
+    const accounts = this.state.accounts;
+    let arr = [];
+    accounts.forEach(function(element) {
+      if (element.CustomerId === custid) {
+        arr.push(<p className="card-text" key={element.id}>{element.AccountNumber}</p>)
+      }
+    });
+    return arr;
+  }
+
   render() {
     return (
       <div className="container">
@@ -63,7 +74,7 @@ class Customers extends Component {
                       <p className="card-text">ID number: {customer.NationalIDNumber}</p>
                       <p className="card-text">Contact number: {customer.ContactNumber}</p>
                       <p className="card-text">Email: {customer.EmailAddress}</p>
-                      <p className="card-text">List of accounts</p>
+                      <div className="lead">List of accounts{this.listOfAccounts(customer.id)}</div>
                     </div>
                   </div>
                 </Link>
