@@ -12,7 +12,7 @@ const app = express();
 
 // the database
 // Account
-const account = [
+const accounts = [
   {
     "id": 1,
     "CustomerShortCode": "shortcode",
@@ -82,7 +82,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // log HTTP requests
-app.use(morgan('combined'));
+//app.use(morgan('combined'));
 
 // retrieve all questions
 app.get('/', (req, res) => {
@@ -116,7 +116,7 @@ app.get('/', (req, res) => {
     DateLastUpdated: acc.DateLastUpdated,
     LastUpdatedBy: acc.LastUpdatedBy
   }));
-  res.send(cs);
+  res.send(accs);
 });
 
 // get a specific collection record

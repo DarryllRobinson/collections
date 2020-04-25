@@ -4,6 +4,7 @@ import auth0Client from './Auth/Auth';
 import NavBar from './NavBar/NavBar';
 import Callback from './Callback/Callback';
 import Collections from './Collections/Collections';
+import Accounts from './Accounts/Accounts';
 import Collection from './Collection/Collection';
 import SecuredRoute from './SecuredRoute/SecuredRoute';
 import Welcome from './Welcome/Welcome';
@@ -51,6 +52,7 @@ class App extends Component {
 
         <Route exact path='/collections' component={CollectionsComponent}/>
         <Route exact path='/collection/:collectionId' component={CollectionComponent}/>
+        <Route exact path='/accounts' component={AccountsComponent}/>
 
       </div>
     );
@@ -67,6 +69,13 @@ const CollectionsComponent = (props) => {
 const CollectionComponent = (props) => {
   return (
     <Collection {...props}
+    />
+  );
+}
+
+const AccountsComponent = (props) => {
+  return (
+    <Accounts {...props}
     />
   );
 }

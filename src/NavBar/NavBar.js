@@ -8,8 +8,12 @@ function NavBar(props) {
     props.history.replace('/');
   };
 
-  const kba = () => {
+  const collections = () => {
     props.history.replace('/collections');
+  }
+
+  const accounts = () => {
+    props.history.replace('/accounts');
   }
 
   return (
@@ -25,7 +29,8 @@ function NavBar(props) {
         auth0Client.isAuthenticated() &&
         <div>
           <label className="mr-2 text-white">{auth0Client.getProfile().nickname}</label>
-          <button className="btn btn-dark" onClick={() => {kba()}}>Process</button>
+          <button className="btn btn-dark" onClick={() => {collections()}}>Collections</button>
+          <button className="btn btn-dark" onClick={() => {accounts()}}>Accounts</button>
           <button className="btn btn-dark" onClick={() => {signOut()}}>Sign Out</button>
         </div>
       }
