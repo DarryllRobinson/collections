@@ -7,15 +7,29 @@ class Customers extends Component {
     super(props);
 
     this.state = {
-      customers: null,
+      accounts: null,
+      customers: null
     };
   }
 
   async componentDidMount() {
-    const customers = (await axios.get('http://localhost:8081/')).data;
+    const customers = (await axios.get('http://localhost:8081/customers/')).data;
+    const accounts = (await axios.get('http://localhost:8081/accounts/')).data;
     this.setState({
-      customers,
+      accounts,
+      customers
     });
+  }
+
+  countAccounts(custid) {
+    const accounts = this.state.accounts;
+    let count = 0;
+    accounts.forEach(function(element) {
+      if (element.CustomerId === custid) {
+        count = count + 1;
+      }
+    });
+    return count;
   }
 
   render() {
@@ -28,14 +42,17 @@ class Customers extends Component {
               <div key={customer.id} className="col-sm-12 col-md-4 col-lg-3">
                 <Link to={`/customer/${customer.id}`}>
                   <div className="card text-white bg-primary mb-3">
-                    <div className="card-header">Number of cases: {customer.id}</div>
+                    <div className="card-header">
+                      <p>Accounts: {this.countAccounts(customer.id)}</p>
+                      <p>Overdue accounts: {customer.id}</p>
+                    </div>
                     <div className="card-body">
-                      <h4 className="card-title">{customer.Surname}</h4>
-                      <p className="card-text">{customer.FirstName}</p>
+                      <h4 className="card-title">Current status: {customer.CurrentStatus}</h4>
+                      <p className="card-text">{customer.FirstName} {customer.Surname}</p>
                       <p className="card-text">ID number: {customer.NationalIDNumber}</p>
                       <p className="card-text">Contact number: {customer.ContactNumber}</p>
                       <p className="card-text">Email: {customer.EmailAddress}</p>
-                      <p className="card-text">Current status: {customer.CurrentStatus}</p>
+                      <p className="card-text">List of accounts</p>
                     </div>
                   </div>
                 </Link>

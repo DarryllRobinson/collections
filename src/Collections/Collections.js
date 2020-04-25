@@ -12,7 +12,7 @@ class Collections extends Component {
   }
 
   async componentDidMount() {
-    const collections = (await axios.get('http://localhost:8081/')).data;
+    const collections = (await axios.get('http://localhost:8081/collections')).data;
     this.setState({
       collections,
     });

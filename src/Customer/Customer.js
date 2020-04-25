@@ -20,7 +20,8 @@ class Customer extends Component {
   async refreshCollection() {
     //console.log('this.props: ', this.props);
     const { match: { params } } = this.props;
-    const customer = (await axios.get(`http://localhost:8081/${params.customerId}`)).data;
+    console.log(`http://localhost:8081/customer/${params.customerId}`);
+    const customer = (await axios.get(`http://localhost:8081/customer/${params.customerId}`)).data;
     this.setState({
       customer,
     });
@@ -37,7 +38,7 @@ class Customer extends Component {
 
   render() {
     const {customer} = this.state;
-    console.log('customer: ', customer);
+    //console.log('customer: ', customer);
 
     if (customer === null) return <p>Loading... </p>;
     return (
@@ -49,7 +50,7 @@ class Customer extends Component {
             <hr className="my-4" />
             <SubmitUpdate accountId={customer.id} submitUpdate={this.submitUpdate} />
             <p>Notes</p>
-            
+
           </div>
         </div>
       </div>

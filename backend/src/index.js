@@ -43,6 +43,68 @@ const accounts = [
     "DateLastUpdated": "25/04/2020",
     "LastUpdatedBy": "Darryll",
     "CustomerId": 1
+  },
+  {
+    "id": 2,
+    "CustomerShortCode": "custshortcode",
+    "AccountNumber": "acc2",
+    "DebtorAge": 10,
+    "PaymentTermDays": 30,
+    "CreditLimit": 3000,
+    "TotalBalance": 2500,
+    "AmountDue": 1350,
+    "CurrentBalance": 1700,
+    "Days30": 400,
+    "Days60": 500,
+    "Days90": 600,
+    "Days120": 300,
+    "Days150": 0,
+    "Days180": 0,
+    "PaymentMethod": "EFT",
+    "PaymentDueDate": 2,
+    "DebitOrderDate": 2,
+    "LastPaymentDate": "02/03/2020",
+    "LastPTPDate": "",
+    "LastPTPAmount": 0,
+    "AccountNotes": "",
+    "NextVisitDate": "",
+    "CurrentStatus": "Active",
+    "DateCreated": "03/01/2020",
+    "CreatedBy": "Adrian",
+    "DateLastUpdated": "25/04/2020",
+    "LastUpdatedBy": "Darryll",
+    "CustomerId": 1
+  },
+  {
+    "id": 3,
+    "CustomerShortCode": "custshortcode",
+    "AccountNumber": "acc1",
+    "DebtorAge": 10,
+    "PaymentTermDays": 30,
+    "CreditLimit": 3000,
+    "TotalBalance": 2500,
+    "AmountDue": 1350,
+    "CurrentBalance": 1700,
+    "Days30": 400,
+    "Days60": 500,
+    "Days90": 600,
+    "Days120": 300,
+    "Days150": 0,
+    "Days180": 0,
+    "PaymentMethod": "EFT",
+    "PaymentDueDate": 2,
+    "DebitOrderDate": 2,
+    "LastPaymentDate": "02/03/2020",
+    "LastPTPDate": "",
+    "LastPTPAmount": 0,
+    "AccountNotes": "",
+    "NextVisitDate": "",
+    "CurrentStatus": "Active",
+    "DateCreated": "03/01/2020",
+    "CreatedBy": "Adrian",
+    "DateLastUpdated": "25/04/2020",
+    "LastUpdatedBy": "Darryll",
+    "CustomerId": 2
   }
 ]
 
@@ -132,8 +194,9 @@ app.use(cors());
 // log HTTP requests
 //app.use(morgan('combined'));
 
+// CUSTOMERS ***************************************************************
 // retrieve all customers
-app.get('/', (req, res) => {
+app.get('/customers/', (req, res) => {
   const ccs = customers.map(cc => ({
     id: cc.id,
     OperatorShortCode: cc.OperatorShortCode,
@@ -159,8 +222,18 @@ app.get('/', (req, res) => {
   res.send(ccs);
 });
 
+// get a specific customer record
+app.get('/customer/:id', (req, res) => {
+  const customer = customers.filter(c => (c.id === parseInt(req.params.id)));
+  console.log(req.params);
+  if (customer.length > 1) return res.status(500).send();
+  if (customer.length === 0) return res.status(404).send();
+  res.send(customer[0]);
+});
+
+// ACCOUNTS ***************************************************************
 // retrieve all accounts
-app.get('/', (req, res) => {
+app.get('/accounts/', (req, res) => {
   const accs = accounts.map(acc => ({
     id: acc.id,
     CustomerShortCode: acc.CustomerShortCode,
@@ -195,47 +268,25 @@ app.get('/', (req, res) => {
   res.send(accs);
 });
 
-// get a specific collection record
-/*app.get('/:id', (req, res) => {
-  const collection = collections.filter(c => (c.id === parseInt(req.params.id)));
-  if (collection.length > 1) return res.status(500).send();
-  if (collection.length === 0) return res.status(404).send();
-  res.send(collection[0]);
-});*/
-
-// get a specific customer record
-app.get('/:id', (req, res) => {
-  const customer = customers.filter(c => (c.id === parseInt(req.params.id)));
-  console.log(req.params);
-  if (customer.length > 1) return res.status(500).send();
-  if (customer.length === 0) return res.status(404).send();
-  res.send(customer[0]);
-});
-
 // get a specific account
-/*app.get('/:id', (req, res) => {
+app.get('/account/:id', (req, res) => {
   const account = accounts.filter(c => (c.id === parseInt(req.params.id)));
   if (account.length > 1) return res.status(500).send();
   if (account.length === 0) return res.status(404).send();
   res.send(account[0]);
-});*/
+});
 
-const checkJwt = jwt({
-  secret: jwksRsa.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: `https://fcmcms.eu.auth0.com/.well-known/jwks.json`
-  }),
-
-  // Validate the audience and the issuer.
-  audience: 'fkwBprhTiDiiWaXb37yAFn14DU5ct1zy',
-  issuer: `https://fcmcms.eu.auth0.com/`,
-  algorithms: ['RS256']
+// COLLECTIONS ***************************************************************
+// get a specific collection record
+/*app.get('/collection/:id', (req, res) => {
+  const collection = collections.filter(c => (c.id === parseInt(req.params.id)));
+  if (collection.length > 1) return res.status(500).send();
+  if (collection.length === 0) return res.status(404).send();
+  res.send(collection[0]);
 });
 
 // insert a new collection record ******* TO COME
-/*app.post('/', checkJwt, (req, res) => {
+app.post('/', checkJwt, (req, res) => {
   const {title, description} = req.body;
   const newQuestion = {
     id: questions.length + 1,
@@ -246,7 +297,7 @@ const checkJwt = jwt({
   };
   questions.push(newQuestion);
   res.status(200).send();
-});*/
+});
 
 // insert a new note to a record
 app.post('/update/:id', checkJwt, (req, res) => {
@@ -264,6 +315,20 @@ app.post('/update/:id', checkJwt, (req, res) => {
   });
 
   res.status(200).send();
+});*/
+
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://fcmcms.eu.auth0.com/.well-known/jwks.json`
+  }),
+
+  // Validate the audience and the issuer.
+  audience: 'fkwBprhTiDiiWaXb37yAFn14DU5ct1zy',
+  issuer: `https://fcmcms.eu.auth0.com/`,
+  algorithms: ['RS256']
 });
 
 // start the server

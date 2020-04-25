@@ -20,7 +20,8 @@ class Account extends Component {
   async refreshCollection() {
     //console.log('this.props: ', this.props);
     const { match: { params } } = this.props;
-    const account = (await axios.get(`http://localhost:8081/${params.accountId}`)).data;
+    console.log(`http://localhost:8081/account/${params.accountId}`);
+    const account = (await axios.get(`http://localhost:8081/account/${params.accountId}`)).data;
     this.setState({
       account,
     });

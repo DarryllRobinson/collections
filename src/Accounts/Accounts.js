@@ -12,7 +12,7 @@ class Accounts extends Component {
   }
 
   async componentDidMount() {
-    const accounts = (await axios.get('http://localhost:8081/')).data;
+    const accounts = (await axios.get('http://localhost:8081/accounts/')).data;
     this.setState({
       accounts,
     });
