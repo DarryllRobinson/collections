@@ -48,10 +48,21 @@ class Customers extends Component {
     let arr = [];
     accounts.forEach(function(element) {
       if (element.CustomerId === custid) {
-        arr.push(<p className="card-text" key={element.id}>{element.AccountNumber}</p>)
+        arr.push(<p key={element.id}>{element.AccountNumber}</p>)
       }
     });
     return arr;
+  }
+
+  overdueCard(custid) {
+    const accounts = this.state.accounts;
+    let cardTheme = "card text-white bg-primary mb-3";
+    accounts.forEach(function(element) {
+      if (element.CustomerId === custid && element.CurrentStatus !== "Active") {
+        cardTheme = "card text-white bg-danger mb-3";
+      }
+    });
+    return cardTheme;
   }
 
   render() {
@@ -63,7 +74,7 @@ class Customers extends Component {
             this.state.customers && this.state.customers.map(customer => (
               <div key={customer.id} className="col-sm-12 col-md-4 col-lg-3">
                 <Link to={`/customer/${customer.id}`}>
-                  <div className="card text-white bg-primary mb-3">
+                  <div className={this.overdueCard(customer.id)}>
                     <div className="card-header">
                       <p>Accounts: {this.countAccounts(customer.id)}</p>
                       <p>Overdue accounts: {this.countOverdueAccounts(customer.id)}</p>
@@ -74,7 +85,7 @@ class Customers extends Component {
                       <p className="card-text">ID number: {customer.NationalIDNumber}</p>
                       <p className="card-text">Contact number: {customer.ContactNumber}</p>
                       <p className="card-text">Email: {customer.EmailAddress}</p>
-                      <div className="lead">List of accounts{this.listOfAccounts(customer.id)}</div>
+                      <div className="card-text">List of accounts:{this.listOfAccounts(customer.id)}</div>
                     </div>
                   </div>
                 </Link>
