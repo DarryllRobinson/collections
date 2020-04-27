@@ -1,6 +1,6 @@
 'use strict';
 
-const Account = require('../models/appModel.js');
+const Account = require('../models/accountModel.js');
 
 exports.list_all_accounts = function(req, res) {
   Account.getAllAccount(function(err, account) {
