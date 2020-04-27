@@ -7,6 +7,7 @@ class Customer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      account: null,
       customer: null
     };
 
@@ -20,10 +21,12 @@ class Customer extends Component {
   async refreshCollection() {
     //console.log('this.props: ', this.props);
     const { match: { params } } = this.props;
-    console.log(`http://localhost:8081/customer/${params.customerId}`);
-    const customer = (await axios.get(`http://localhost:8081/customer/${params.customerId}`)).data;
+    //console.log(`http://localhost:8081/customers/${params.customerId}`);
+    const customer = (await axios.get(`http://localhost:8081/customers/${params.customerId}`)).data;
+    const account = (await axios.get(`http://localhost:8081/accounts/${params.customerId}`)).data;
     this.setState({
-      customer,
+      account: account,
+      customer: customer
     });
   }
 
@@ -38,15 +41,19 @@ class Customer extends Component {
 
   render() {
     const {customer} = this.state;
-    //console.log('customer: ', customer);
+    const {account} = this.state;
+    console.log('customer: ', customer);
+    console.log('account: ', account);
 
     if (customer === null) return <p>Loading... </p>;
     return (
       <div className="container">
         <div className="row">
           <div className="jumbotron col-12">
-            <h1 className="display-3">{customer.FirstName}</h1>
-            <p className="lead">{customer.Surname}</p>
+            <p className="card-text">{customer[0].FirstName} {customer.Surname}</p>
+            <p className="card-text">ID number: {customer[0].NationalIDNumber}</p>
+            <p className="card-text">Contact number: {customer[0].ContactNumber}</p>
+            <p className="card-text">Email: {customer[0].EmailAddress}</p>
             <hr className="my-4" />
             <SubmitUpdate accountId={customer.id} submitUpdate={this.submitUpdate} />
             <p>Notes</p>

@@ -73,7 +73,7 @@ class Customers extends Component {
           {
             this.state.customers && this.state.customers.map(customer => (
               <div key={customer.id} className="col-sm-12 col-md-4 col-lg-3">
-                <Link to={`/customer/${customer.id}`}>
+                <Link to={`/customers/${customer.id}`}>
                   <div className={this.overdueCard(customer.id)}>
                     <div className="card-header">
                       <p>Accounts: {this.countAccounts(customer.id)}</p>
