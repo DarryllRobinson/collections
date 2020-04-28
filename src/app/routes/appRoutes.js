@@ -2,7 +2,7 @@
 module.exports = function(app) {
   const acc = require('../controllers/accountController');
   const cust = require('../controllers/customerController');
-  const upload = require('../controllers/uploadController');
+  //const upload = require('../controllers/uploadController');
   const home = require('../controllers/homeController');
 
   // acc Routes
@@ -17,16 +17,19 @@ module.exports = function(app) {
 
   // cust Routes
   app.route('/customers')
-    .get(cust.list_all_customers);
+    .get(cust.list_all_customers)
+    .post(cust.create_a_customer);
 
   app.route('/customers/:customerId')
-    .get(cust.read_a_customer);
+    .get(cust.read_a_customer)
+    .put(cust.update_a_customer)
+    .delete(cust.delete_a_customer);
 
   // upload Routes
   /*app.route('/')
-    .get(home.getHome);*/
+    .get(home.getHome);
 
   app.route('/file-upload')
-    .post(upload.upload_a_file);
+    .post(upload.upload_a_file);*/
 
 };

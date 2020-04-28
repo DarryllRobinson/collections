@@ -1,14 +1,14 @@
 'user strict';
 const sql = require('./db.js');
 
-const Account = function(account){
-    this.account = account.account;
-    this.status = account.status;
+const Customer = function(customer){
+    this.customer = customer.customer;
+    this.status = customer.status;
     this.created_at = new Date();
   };
 
-Account.createAccount = function(newAccount, result) {
-  sql.query("INSERT INTO accounts set ?", newAccount, function(err, res) {
+Customer.createCustomer = function(newCustomer, result) {
+  sql.query("INSERT INTO customers set ?", newCustomer, function(err, res) {
     if(err) {
       console.log('err: ', err);
       result(err, null);
@@ -19,33 +19,33 @@ Account.createAccount = function(newAccount, result) {
   });
 };
 
-Account.getAllAccount = function (result) {
-  sql.query("Select * from accounts", function (err, res) {
+Customer.getAllCustomer = function (result) {
+  sql.query("Select * from customers", function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
     } else {
-      //console.log('accounts : ', res);
+      //console.log('customers : ', res);
       result(null, res);
     }
   });
 };
 
-Account.getAccountById = function (accountId, result) {
-  sql.query("Select * from accounts where id = ?", accountId, function (err, res) {
+Customer.getCustomerById = function (customerId, result) {
+  sql.query("Select * from customers where id = ?", customerId, function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
     } else {
-      //console.log('accounts : ', res);
+      //console.log('customers : ', res);
       result(null, res);
     }
   });
 };
 
 
-Account.updateById = function(id, account, result){
-  sql.query("UPDATE accounts SET task = ? WHERE id = ?", [account.account, id], function (err, res) {
+Customer.updateById = function(id, customer, result){
+  sql.query("UPDATE customers SET task = ? WHERE id = ?", [customer.customer, id], function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
@@ -55,8 +55,8 @@ Account.updateById = function(id, account, result){
   });
 };
 
-Account.remove = function(id, result){
-   sql.query("DELETE FROM accounts WHERE id = ?", [id], function (err, res) {
+Customer.remove = function(id, result){
+   sql.query("DELETE FROM customers WHERE id = ?", [id], function (err, res) {
      if(err) {
        console.log("error: ", err);
        result(null, err);
@@ -66,4 +66,4 @@ Account.remove = function(id, result){
    });
 };
 
-module.exports= Account;
+module.exports= Customer;
