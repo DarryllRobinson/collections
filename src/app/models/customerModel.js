@@ -45,7 +45,7 @@ Customer.getCustomerById = function (customerId, result) {
 
 
 Customer.updateById = function(id, customer, result){
-  sql.query("UPDATE customers SET task = ? WHERE id = ?", [customer.customer, id], function (err, res) {
+  sql.query("UPDATE customers SET customer = ? WHERE id = ?", [customer.customer, id], function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
