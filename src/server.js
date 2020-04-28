@@ -5,8 +5,6 @@ const express = require('express'),
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const formidable = require('formidable');
-const mv = require('mv');
 const multer = require('multer');
 const path = require('path');
 const mysql = require('mysql');
@@ -37,6 +35,31 @@ app.use(cors());
 
 // connect to database
 mc.connect();
+
+var storage = multer.diskStorage({
+      destination: function (req, file, cb) {
+      cb(null, 'public/uploads');
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '-' +file.originalname )
+    }
+});
+
+var upload = multer({ storage: storage }).single('file');
+
+app.post('/upload',function(req, res) {
+
+    upload(req, res, function (err) {
+           if (err instanceof multer.MulterError) {
+               return res.status(500).json(err)
+           } else if (err) {
+               return res.status(500).json(err)
+           }
+      return res.status(200).send(req.file)
+
+    })
+
+});
 
 app.listen(port);
 

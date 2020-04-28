@@ -42,8 +42,8 @@ class Customer extends Component {
   render() {
     const {customer} = this.state;
     const {account} = this.state;
-    console.log('customer: ', customer);
-    console.log('account: ', account);
+    //console.log('customer: ', customer);
+    //console.log('account: ', account);
 
     if (customer === null) return <p>Loading... </p>;
     return (

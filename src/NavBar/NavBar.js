@@ -12,6 +12,10 @@ function NavBar(props) {
     props.history.replace('/customers');
   }
 
+  const upload = () => {
+    props.history.replace('/uploadPage');
+  }
+
   return (
     <nav className="navbar navbar-dark bg-primary fixed-top">
       <Link className="navbar-brand" to="/">
@@ -25,6 +29,7 @@ function NavBar(props) {
         auth0Client.isAuthenticated() &&
         <div>
           <label className="mr-2 text-white">{auth0Client.getProfile().nickname}</label>
+          <button className="btn btn-dark" onClick={() => {upload()}}>Upload</button>
           <button className="btn btn-dark" onClick={() => {customers()}}>Customers</button>
           <button className="btn btn-dark" onClick={() => {signOut()}}>Sign Out</button>
         </div>

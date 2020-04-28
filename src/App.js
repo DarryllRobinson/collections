@@ -11,6 +11,8 @@ import Customer from './Customer/Customer';
 import Collection from './Collection/Collection';
 import SecuredRoute from './SecuredRoute/SecuredRoute';
 import Welcome from './Welcome/Welcome';
+import Upload from './Upload/Upload';
+import File from './File/File';
 
 class App extends Component {
   constructor(props) {
@@ -42,11 +44,16 @@ class App extends Component {
         {/*<Route exact path='/' component={Welcome}/>*/}
         <Route exact path='/callback' component={Callback}/>
 
-        {/*
-        <SecuredRoute exact path='/collections'
-          component={CollectionsComponent}
+
+        <SecuredRoute exact path='/customers'
+          component={CustomersComponent}
           checkingSession={this.state.checkingSession}
         />
+        <SecuredRoute exact path='/customers/:customerId'
+          component={CustomerComponent}
+          checkingSession={this.state.checkingSession}
+        />
+        {/*
         <SecuredRoute exact path='/collection/:collectionId'
           component={CollectionComponent}
           checkingSession={this.state.checkingSession}
@@ -57,8 +64,9 @@ class App extends Component {
         <Route exact path='/collection/:collectionId' component={CollectionComponent}/>
         <Route exact path='/accounts' component={AccountsComponent}/>
         <Route exact path='/customers' component={CustomersComponent}/>
-        {/*<Route exact path='/customer/:accountId' component={CustomerAccountComponent}/>*/}
         <Route exact path='/customers/:customerId' component={CustomerComponent}/>
+        <Route exact path='/uploadPage' component={UploadComponent}/>
+        {/*<Route exact path='/customer/:accountId' component={CustomerAccountComponent}/>*/}
 
       </div>
     );
@@ -100,9 +108,16 @@ const CustomerComponent = (props) => {
   );
 }
 
-const CustomerAccountComponent = (props) => {
+const UploadComponent = (props) => {
   return (
-    <Account {...props}
+    <Upload {...props}
+    />
+  );
+}
+
+const FileComponent = (props) => {
+  return (
+    <File {...props}
     />
   );
 }
