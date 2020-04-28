@@ -7,10 +7,13 @@ module.exports = function(app) {
 
   // acc Routes
   app.route('/accounts')
-    .get(acc.list_all_accounts);
+    .get(acc.list_all_accounts)
+    .post(acc.create_an_account);
 
   app.route('/accounts/:accountId')
-    .get(acc.read_an_account);
+    .get(acc.read_an_account)
+    .put(acc.update_an_account)
+    .delete(acc.delete_an_account);
 
   // cust Routes
   app.route('/customers')
@@ -20,8 +23,8 @@ module.exports = function(app) {
     .get(cust.read_a_customer);
 
   // upload Routes
-  app.route('/')
-    .get(home.getHome);
+  /*app.route('/')
+    .get(home.getHome);*/
 
   app.route('/file-upload')
     .post(upload.upload_a_file);
