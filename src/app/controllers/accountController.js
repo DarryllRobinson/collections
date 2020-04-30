@@ -38,14 +38,14 @@ exports.read_an_account = function(req, res) {
 };
 
 exports.update_an_account = function(req, res) {
-  Account.updateById(req.params.accountId, new Account(req.body), function(err, account) {
+  Account.updateAccountById(req.params.accountId, new Account(req.body), function(err, account) {
     if (err) res.send(err);
     res.json(account);
   })
 }
 
 exports.delete_an_account = function(req, res) {
-  Account.remove(req.params.accountId, function(err, account) {
+  Account.removeAccount(req.params.accountId, function(err, account) {
     if (err) res.send(err);
     res.json({ message: 'Account successfully deleted' });
   });

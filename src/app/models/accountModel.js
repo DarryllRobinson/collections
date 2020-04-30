@@ -44,7 +44,7 @@ Account.getAccountById = function (accountId, result) {
 };
 
 
-Account.updateById = function(id, account, result){
+Account.updateAccountById = function(id, account, result){
   sql.query("UPDATE accounts SET account = ? WHERE id = ?", [account.account, id], function (err, res) {
     if(err) {
       console.log("error: ", err);
@@ -55,7 +55,7 @@ Account.updateById = function(id, account, result){
   });
 };
 
-Account.remove = function(id, result){
+Account.removeAccount = function(id, result){
    sql.query("DELETE FROM accounts WHERE id = ?", [id], function (err, res) {
      if(err) {
        console.log("error: ", err);

@@ -4,9 +4,9 @@ class Auth {
   constructor() {
     this.auth0 = new auth0.WebAuth({
       // the following three lines MUST be updated
-      domain: 'fcmcms.eu.auth0.com',
-      audience: 'https://fcmcms.eu.auth0.com/userinfo',
-      clientID: 'fkwBprhTiDiiWaXb37yAFn14DU5ct1zy',
+      domain: 'dev-3fdu5-wi.au.auth0.com',
+      audience: 'https://dev-3fdu5-wi.au.auth0.com/userinfo',
+      clientID: 'nkqOlJpNLYNR7kcYh5eZuQa5tclPg94p',
       redirectUri: 'http://localhost:3000/callback',
       responseType: 'id_token',
       scope: 'openid profile'
@@ -58,7 +58,7 @@ class Auth {
   signOut() {
     this.auth0.logout({
       returnTo: 'http://localhost:3000',
-      clientID: 'fkwBprhTiDiiWaXb37yAFn14DU5ct1zy',
+      clientID: 'nkqOlJpNLYNR7kcYh5eZuQa5tclPg94p',
     });
   }
 

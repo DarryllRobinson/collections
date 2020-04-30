@@ -44,7 +44,7 @@ Customer.getCustomerById = function (customerId, result) {
 };
 
 
-Customer.updateById = function(id, customer, result){
+Customer.updateCustomerById = function(id, customer, result){
   sql.query("UPDATE customers SET customer = ? WHERE id = ?", [customer.customer, id], function (err, res) {
     if(err) {
       console.log("error: ", err);
@@ -55,7 +55,7 @@ Customer.updateById = function(id, customer, result){
   });
 };
 
-Customer.remove = function(id, result){
+Customer.removeCustomer = function(id, result){
    sql.query("DELETE FROM customers WHERE id = ?", [id], function (err, res) {
      if(err) {
        console.log("error: ", err);

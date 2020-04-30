@@ -38,14 +38,14 @@ exports.read_a_customer = function(req, res) {
 };
 
 exports.update_a_customer = function(req, res) {
-  Customer.updateById(req.params.customerId, new Customer(req.body), function(err, customer) {
+  Customer.updateCustomerById(req.params.customerId, new Customer(req.body), function(err, customer) {
     if (err) res.send(err);
     res.json(customer);
   })
 }
 
 exports.delete_a_customer = function(req, res) {
-  Customer.remove(req.params.customerId, function(err, customer) {
+  Customer.removeCustomer(req.params.customerId, function(err, customer) {
     if (err) res.send(err);
     res.json({ message: 'Customer successfully deleted' });
   });
