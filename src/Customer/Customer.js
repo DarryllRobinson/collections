@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import SubmitUpdate from './SubmitUpdate';
 import auth0Client from '../Auth/Auth';
@@ -48,9 +49,13 @@ class Customer extends Component {
     if (customer === null) return <p>Loading... </p>;
     return (
       <div className="container">
-        <div className="row">
+      <div>
+        <Link to={`/customers/`}>Back to Customer list</Link>
+      </div>
+      <div className="row">
           <div className="jumbotron col-12">
-            <p className="card-text">{customer[0].FirstName} {customer.Surname}</p>
+            <p className="card-header"><Link to={`/customers/`}>Back to Customer list</Link></p>
+            <p className="card-text">{customer[0].FirstName} {customer[0].Surname}</p>
             <p className="card-text">ID number: {customer[0].NationalIDNumber}</p>
             <p className="card-text">Contact number: {customer[0].ContactNumber}</p>
             <p className="card-text">Email: {customer[0].EmailAddress}</p>

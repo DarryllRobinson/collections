@@ -1,0 +1,13 @@
+id,AccountNumber,DateCreated,CreatedBy,CurrentAssignment,InitialAssignment,DateLastUpdated,LastUpdatedBy,ReopenedBy,DateReopened,ReassignedBy,DateReassigned,CaseReason,CaseNotes,CurrentStatus
+1,acc1,2020-04-23 12:00:00,Darryll,Darryll,Darryll,2020-04-23 12:00:00,Darryll,NULL,NULL,NULL,NULL,Reason,No notes yet,Open
+2,acc2,2020-04-24 12:00:00,Darryll,Darryll,Darryll,2020-04-24 12:00:00,Darryll,NULL,NULL,NULL,NULL,Reason,No notes yet,Open
+3,acc3,2020-04-25 12:00:00,Darryll,Darryll,Darryll,2020-04-25 12:00:00,Darryll,NULL,NULL,NULL,NULL,Reason,No notes yet,Open
+4,acc4,2020-04-26 12:00:00,Darryll,Darryll,Darryll,2020-04-26 12:00:00,Darryll,NULL,NULL,NULL,NULL,Reason,No notes yet,Open
+5,acc5,2020-04-27 12:00:00,Darryll,Darryll,Darryll,2020-04-27 12:00:00,Darryll,NULL,NULL,NULL,NULL,Reason,No notes yet,Open
+6,acc6,2020-04-28 12:00:00,Darryll,Darryll,Darryll,2020-04-28 12:00:00,Darryll,NULL,NULL,NULL,NULL,Reason,No notes yet,Open
+7,acc7,2020-04-29 12:00:00,Darryll,Darryll,Darryll,2020-04-29 12:00:00,Darryll,NULL,NULL,NULL,NULL,Reason,No notes yet,Open
+8,acc8,2020-04-30 12:00:00,Darryll,Darryll,Darryll,2020-04-30 12:00:00,Darryll,NULL,NULL,NULL,NULL,Reason,No notes yet,Open
+9,acc9,2020-05-01 12:00:00,Darryll,Darryll,Darryll,2020-05-01 12:00:00,Darryll,NULL,NULL,NULL,NULL,Reason,No notes yet,Open
+10,acc10,2020-05-02 12:00:00,Darryll,Darryll,Darryll,2020-05-02 12:00:00,Darryll,NULL,NULL,NULL,NULL,Reason,No notes yet,Open
+11,acc11,2020-05-03 12:00:00,Darryll,Darryll,Darryll,2020-05-03 12:00:00,Darryll,NULL,NULL,NULL,NULL,Reason,No notes yet,Open
+12,acc12,2020-05-04 12:00:00,Darryll,Darryll,Darryll,2020-05-04 12:00:00,Darryll,NULL,NULL,NULL,NULL,Reason,No notes yet,Open
