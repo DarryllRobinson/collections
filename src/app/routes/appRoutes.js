@@ -7,6 +7,7 @@ module.exports = function(app) {
   const contact = require('../controllers/contactController');
   const operator = require('../controllers/operatorController');
   const kam = require('../controllers/kamController');
+  const dash = require('../controllers/dashboardController');
 
   // acc Routes
   app.route('/accounts')
@@ -77,4 +78,8 @@ module.exports = function(app) {
     .get(kam.read_a_kam)
     .put(kam.update_a_kam)
     .delete(kam.delete_a_kam);
+
+  // dash Routes
+  app.route('/dashboard')
+    .get(dash.list_all_dashboards);
 };
