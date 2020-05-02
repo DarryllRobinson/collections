@@ -9,104 +9,97 @@ class Upload extends Component {
     super(props);
       this.state = {
         selectedFile: null,
-        loaded: 0
+        loaded: 0,
+        targetTable: ''
       }
 
   }
 
-  xxonChangeHandler = event => {
-    this.setState({
-      selectedFile: event.target.files,
-      loaded: 0,
-    });
+  onChangeHandler = event => {
+    let files = event.target.files;
+    let fileName = event.target.name;
+    if(this.maxSelectFile(event) && this.checkMimeType(event) && this.checkMimeType(event)) {
+      // if return true allow to setState
+      this.setState({
+        selectedFile: files,
+        targetTable: fileName
+      });
+    }
   }
 
-  onChangeHandler=event=>{
-      var files = event.target.files
-      if(this.maxSelectFile(event) && this.checkMimeType(event) &&    this.checkMimeType(event)){
-      // if return true allow to setState
-         this.setState({
-         selectedFile: files
-      })
-   }
-}
-
-checkMimeType=(event)=>{
-
-    let files = event.target.files
-    let err = [] // create empty array
-    const types = ['image/png', 'image/jpeg', 'image/gif']
+  checkMimeType = (event) => {
+    let files = event.target.files;
+    //console.log('file type: ', files);
+    let err = [];
+    const types = [
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'image/jpeg',
+      'image/gif'
+    ];
+      for(let x = 0; x < files.length; x++) {
+          /*if (types.every(type => files[x].type !== type)) {
+          err[x] = files[x].type+' is not a supported format\n';
+         // assign message to array
+       }*/
+      };
+      for(var z = 0; z<err.length; z++) { // loop create toast massage
+          event.target.value = null
+          toast.error(err[z])
+      }
+     return true;
+  }
+  checkFileSize = (event) => {
+    let files = event.target.files;
+    let size = 15000;
+    let err = "";
     for(var x = 0; x<files.length; x++) {
-        /*if (types.every(type => files[x].type !== type)) {
-        err[x] = files[x].type+' is not a supported format\n';
-       // assign message to array
-     }*/
+      if (files[x].size > size) {
+        err += files[x].type+'is too large, please pick a smaller file\n';
+      }
     };
-    for(var z = 0; z<err.length; z++) { // loop create toast massage
-        event.target.value = null
-        toast.error(err[z])
+    if (err !== '') {
+      event.target.value = null;
+      console.log(err);
+      return false;
     }
-   return true;
-}
-
-checkFileSize=(event)=>{
-     let files = event.target.files
-     let size = 15000;
-     let err = "";
-     for(var x = 0; x<files.length; x++) {
-     if (files[x].size > size) {
-      err += files[x].type+'is too large, please pick a smaller file\n';
-    }
-  };
-  if (err !== '') {
-     event.target.value = null
-     console.log(err)
-     return false
-}
-
-return true;
-
-}
-
+    return true;
+  }
 
   onClickHandler = () => {
    const data = new FormData()
-   for(let x = 0; x<this.state.selectedFile.length; x++) {
+   if (this.state.selectedFile) {
+     for(let x = 0; x<this.state.selectedFile.length; x++) {
        data.append('file', this.state.selectedFile[x])
-   }
-
-   axios.post("http://localhost:8081/upload", data, {
-        onUploadProgress: ProgressEvent => {
-          this.setState({
-            loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
-        })
-    },
- })
-
- .then(res => {
-     toast.success('upload success')
- })
- .catch(err => {
-     toast.error('upload fail')
- })
-}
-
-  maxSelectFile=(event)=>{
-   let files = event.target.files // create file object
-       if (files.length > 3) {
-          const msg = 'Only 3 images can be uploaded at a time'
-          event.target.value = null // discard selected file
-          console.log(msg)
-         return false;
-
      }
+
+     axios.post(`http://localhost:8081/upload/${this.state.targetTable}`, data, {
+       onUploadProgress: ProgressEvent => {
+         this.setState({
+           loaded: (ProgressEvent.loaded / ProgressEvent.total*100)
+         })
+       },
+     })
+     .then(res => {
+       toast.success('Upload successful')
+     })
+     .catch(err => {
+       toast.error('Upload failed')
+     });
+   } else {
+     toast.error('Please select a file to be uploaded');
+   }
+ }
+
+ maxSelectFile = (event) => {
+   let files = event.target.files;
+   if (files.length > 3) {
+     const msg = 'Only 3 files can be uploaded at a time';
+     event.target.value = null; // discard selected file
+     console.log(msg);
+     return false;
+   }
    return true;
-
-  }
-
-processFile() {
-
-}
+ }
 
   render() {
     return (
@@ -115,7 +108,7 @@ processFile() {
           <ToastContainer />
         </div>
         <label>Upload your case file</label>
-        <input type="file" name="classfile"  onChange={this.onChangeHandler}/>
+        <input type="file" name="cases" onChange={this.onChangeHandler}/>
         <button type="button" className="btn btn-success btn-primary" onClick={this.onClickHandler}>
           Upload
         </button>

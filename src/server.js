@@ -10,6 +10,7 @@ const path = require('path');
 const mysql = require('mysql');
 const xlstojson = require("xls-to-json-lc");
 const xlsxtojson = require("xlsx-to-json-lc");
+const fs = require('fs');
 
 // connection configurations
 const mc = mysql.createConnection({
@@ -60,7 +61,7 @@ var upload = multer({ //multer settings
 }).single('file');
 
 /** API path that will upload the files */
-app.post('/upload', function(req, res) {
+app.post('/upload/cases', function(req, res) {
   let exceltojson = '';
   upload(req,res,function(err){
       if(err){
@@ -84,38 +85,148 @@ app.post('/upload', function(req, res) {
       try {
         exceltojson({
               input: req.file.path,
-              output: req.file.destination + '/output/' + Date.now() + '-output.json', //since we don't need output.json
+              output: null,
               lowerCaseHeaders: false
           }, function(err,result){
               if(err) {
                 console.log('err: ', err);
                 return res.json({error_code:1,err_desc:err, data: null});
               }
-              //console.log('result: ', result);
-              /*result.map(element => {
-                let cols = [];
-                //cols = [...element.keys()];
-                let vals = [];
-                for (let [key, value] of Object.entries(element)) {
-                  cols.push(key);
-                  vals.push(value);
-                };
-                let allVals = [];
-                allVals.push(vals);
-                //console.log('allVals: ', allVals);
-                insertSql(cols, allVals);
-                //console.log('cols: ', cols);
-                //console.log('vals: ', vals);
-              });*/
+
               bulkInsert(mc, 'cases', result, (error, response) => {
                 if (error) {
                   console.log('bulkInsert error: ', error);
-                  res.send(error);
+                  res.json({error_code:1,err_desc:err, data: null});
                 }
                 console.log('Successful insert!');
                 //res.json(response);
               });
               console.log('Successful upload!');
+
+              // delete file named 'sample.txt'
+              fs.unlink(req.file.path, function (err) {
+                  if (err) throw err;
+                  // if no error, file has been deleted successfully
+                  console.log('File deleted!');
+              });
+              res.json({error_code:0,err_desc:null, data: result});
+          })
+      } catch (e){
+        console.log('caught mistake');
+          return res.json({error_code:1,err_desc:"Corupted excel file"});
+      }
+  })
+
+});
+
+/** API path that will upload the files */
+app.post('/upload/accounts', function(req, res) {
+  let exceltojson = '';
+  upload(req,res,function(err){
+      if(err){
+           res.json({error_code:1,err_desc:err});
+           return;
+      }
+      /** Multer gives us file info in req.file object */
+      if(!req.file){
+          res.json({error_code:1,err_desc:"No file passed"});
+          return;
+      }
+      /** Check the extension of the incoming file and
+       *  use the appropriate module
+       */
+      if(req.file.originalname.split('.')[req.file.originalname.split('.').length-1] === 'xlsx'){
+          exceltojson = xlsxtojson;
+      } else {
+          exceltojson = xlstojson;
+      }
+      //console.log(req.file);
+      try {
+        exceltojson({
+              input: req.file.path,
+              output: null,
+              lowerCaseHeaders: false
+          }, function(err,result){
+              if(err) {
+                console.log('err: ', err);
+                return res.json({error_code:1,err_desc:err, data: null});
+              }
+
+              bulkInsert(mc, 'accounts', result, (error, response) => {
+                if (error) {
+                  console.log('bulkInsert error: ', error);
+                  res.json({error_code:1,err_desc:err, data: null});
+                }
+                console.log('Successful insert!');
+                //res.json(response);
+              });
+              console.log('Successful upload!');
+
+              // delete file named 'sample.txt'
+              fs.unlink(req.file.path, function (err) {
+                  if (err) throw err;
+                  // if no error, file has been deleted successfully
+                  console.log('File deleted!');
+              });
+              res.json({error_code:0,err_desc:null, data: result});
+          })
+      } catch (e){
+        console.log('caught mistake');
+          return res.json({error_code:1,err_desc:"Corupted excel file"});
+      }
+  })
+
+});
+
+/** API path that will upload the files */
+app.post('/upload/customers', function(req, res) {
+  let exceltojson = '';
+  upload(req,res,function(err){
+      if(err){
+           res.json({error_code:1,err_desc:err});
+           return;
+      }
+      /** Multer gives us file info in req.file object */
+      if(!req.file){
+          res.json({error_code:1,err_desc:"No file passed"});
+          return;
+      }
+      /** Check the extension of the incoming file and
+       *  use the appropriate module
+       */
+      if(req.file.originalname.split('.')[req.file.originalname.split('.').length-1] === 'xlsx'){
+          exceltojson = xlsxtojson;
+      } else {
+          exceltojson = xlstojson;
+      }
+      //console.log(req.file);
+      try {
+        exceltojson({
+              input: req.file.path,
+              output: null,
+              lowerCaseHeaders: false
+          }, function(err,result){
+              if(err) {
+                console.log('err: ', err);
+                return res.json({error_code:1,err_desc:err, data: null});
+              }
+
+              bulkInsert(mc, 'customers', result, (error, response) => {
+                if (error) {
+                  console.log('bulkInsert error: ', error);
+                  res.json({error_code:1,err_desc:err, data: null});
+                }
+                console.log('Successful insert!');
+                //res.json(response);
+              });
+              console.log('Successful upload!');
+
+              // delete file named 'sample.txt'
+              fs.unlink(req.file.path, function (err) {
+                  if (err) throw err;
+                  // if no error, file has been deleted successfully
+                  console.log('File deleted!');
+              });
               res.json({error_code:0,err_desc:null, data: result});
           })
       } catch (e){
