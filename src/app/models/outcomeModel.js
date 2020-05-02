@@ -32,7 +32,7 @@ Outcome.getAllOutcome = function (result) {
 };
 
 Outcome.getOutcomeById = function (outcomeId, result) {
-  sql.query("Select * from outcomes where id = ?", outcomeId, function (err, res) {
+  sql.query("Select * from outcomes where outcomeId = ?", outcomeId, function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
@@ -45,7 +45,7 @@ Outcome.getOutcomeById = function (outcomeId, result) {
 
 
 Outcome.updateOutcomeById = function(id, outcome, result){
-  sql.query("UPDATE outcomes SET outcome = ? WHERE id = ?", [outcome.outcome, id], function (err, res) {
+  sql.query("UPDATE outcomes SET outcome = ? WHERE outcomeId = ?", [outcome.outcome, id], function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
@@ -56,7 +56,7 @@ Outcome.updateOutcomeById = function(id, outcome, result){
 };
 
 Outcome.removeOutcome = function(id, result){
-   sql.query("DELETE FROM outcomes WHERE id = ?", [id], function (err, res) {
+   sql.query("DELETE FROM outcomes WHERE outcomeId = ?", [id], function (err, res) {
      if(err) {
        console.log("error: ", err);
        result(null, err);

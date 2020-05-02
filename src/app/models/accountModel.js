@@ -32,7 +32,7 @@ Account.getAllAccount = function (result) {
 };
 
 Account.getAccountById = function (accountId, result) {
-  sql.query("Select * from accounts where id = ?", accountId, function (err, res) {
+  sql.query("Select * from accounts where accountId = ?", accountId, function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
@@ -45,7 +45,7 @@ Account.getAccountById = function (accountId, result) {
 
 
 Account.updateAccountById = function(id, account, result){
-  sql.query("UPDATE accounts SET account = ? WHERE id = ?", [account.account, id], function (err, res) {
+  sql.query("UPDATE accounts SET account = ? WHERE accountId = ?", [account.account, id], function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
@@ -56,7 +56,7 @@ Account.updateAccountById = function(id, account, result){
 };
 
 Account.removeAccount = function(id, result){
-   sql.query("DELETE FROM accounts WHERE id = ?", [id], function (err, res) {
+   sql.query("DELETE FROM accounts WHERE accountId = ?", [id], function (err, res) {
      if(err) {
        console.log("error: ", err);
        result(null, err);

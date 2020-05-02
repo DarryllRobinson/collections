@@ -32,7 +32,7 @@ Case.getAllCase = function (result) {
 };
 
 Case.getCaseById = function (caseId, result) {
-  sql.query("Select * from cases where id = ?", caseId, function (err, res) {
+  sql.query("Select * from cases where caseId = ?", caseId, function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
@@ -45,7 +45,7 @@ Case.getCaseById = function (caseId, result) {
 
 
 Case.updateCaseById = function(id, cases, result){
-  sql.query("UPDATE cases SET case = ? WHERE id = ?", [cases.cases, id], function (err, res) {
+  sql.query("UPDATE cases SET case = ? WHERE caseId = ?", [cases.cases, id], function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
@@ -56,7 +56,7 @@ Case.updateCaseById = function(id, cases, result){
 };
 
 Case.removeCase = function(id, result){
-   sql.query("DELETE FROM cases WHERE id = ?", [id], function (err, res) {
+   sql.query("DELETE FROM cases WHERE caseId = ?", [id], function (err, res) {
      if(err) {
        console.log("error: ", err);
        result(null, err);

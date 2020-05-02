@@ -9,6 +9,7 @@ import Customer from './Customer/Customer';
 import SecuredRoute from './SecuredRoute/SecuredRoute';
 import Welcome from './Welcome/Welcome';
 import Upload from './Upload/Upload';
+import Dashboard from './Dashboard/Dashboard';
 
 class App extends Component {
   constructor(props) {
@@ -47,8 +48,14 @@ class App extends Component {
             component={CustomerComponent}
             checkingSession={this.state.checkingSession}
           />
+
           <SecuredRoute exact path='/upload'
             component={UploadComponent}
+            checkingSession={this.state.checkingSession}
+          />
+
+          <SecuredRoute exact path='/dashboard'
+            component={DashboardComponent}
             checkingSession={this.state.checkingSession}
           />
 
@@ -86,6 +93,13 @@ const CustomerComponent = (props) => {
 const UploadComponent = (props) => {
   return (
     <Upload {...props}
+    />
+  );
+}
+
+const DashboardComponent = (props) => {
+  return (
+    <Dashboard {...props}
     />
   );
 }

@@ -32,7 +32,7 @@ Contact.getAllContact = function (result) {
 };
 
 Contact.getContactById = function (contactId, result) {
-  sql.query("Select * from contacts where id = ?", contactId, function (err, res) {
+  sql.query("Select * from contacts where contactId = ?", contactId, function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
@@ -45,7 +45,7 @@ Contact.getContactById = function (contactId, result) {
 
 
 Contact.updateContactById = function(id, contact, result){
-  sql.query("UPDATE contacts SET contact = ? WHERE id = ?", [contact.contact, id], function (err, res) {
+  sql.query("UPDATE contacts SET contact = ? WHERE contactId = ?", [contact.contact, id], function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
@@ -56,7 +56,7 @@ Contact.updateContactById = function(id, contact, result){
 };
 
 Contact.removeContact = function(id, result){
-   sql.query("DELETE FROM contacts WHERE id = ?", [id], function (err, res) {
+   sql.query("DELETE FROM contacts WHERE contactId = ?", [id], function (err, res) {
      if(err) {
        console.log("error: ", err);
        result(null, err);

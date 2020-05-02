@@ -32,7 +32,7 @@ Customer.getAllCustomer = function (result) {
 };
 
 Customer.getCustomerById = function (customerId, result) {
-  sql.query("Select * from customers where id = ?", customerId, function (err, res) {
+  sql.query("Select * from customers where customerId = ?", customerId, function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
@@ -45,7 +45,7 @@ Customer.getCustomerById = function (customerId, result) {
 
 
 Customer.updateCustomerById = function(id, customer, result){
-  sql.query("UPDATE customers SET customer = ? WHERE id = ?", [customer.customer, id], function (err, res) {
+  sql.query("UPDATE customers SET customer = ? WHERE customerId = ?", [customer.customer, id], function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
@@ -56,7 +56,7 @@ Customer.updateCustomerById = function(id, customer, result){
 };
 
 Customer.removeCustomer = function(id, result){
-   sql.query("DELETE FROM customers WHERE id = ?", [id], function (err, res) {
+   sql.query("DELETE FROM customers WHERE customerId = ?", [id], function (err, res) {
      if(err) {
        console.log("error: ", err);
        result(null, err);

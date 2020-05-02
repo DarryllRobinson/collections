@@ -16,6 +16,10 @@ function NavBar(props) {
     props.history.replace('/upload');
   }
 
+  const dashboard = () => {
+    props.history.replace('/dashboard');
+  }
+
   return (
     <nav className="navbar navbar-dark bg-primary fixed-top">
       <Link className="navbar-brand" to="/">
@@ -31,6 +35,7 @@ function NavBar(props) {
           <label className="mr-2 text-white">{auth0Client.getProfile().name}</label>
           <button className="btn btn-dark" onClick={() => {upload()}}>Upload</button>
           <button className="btn btn-dark" onClick={() => {customers()}}>Customers</button>
+          <button className="btn btn-dark" onClick={() => {dashboard()}}>Dashboard</button>
           <button className="btn btn-dark" onClick={() => {signOut()}}>Sign Out</button>
         </div>
       }

@@ -5,8 +5,8 @@ module.exports = function(app) {
   const out = require('../controllers/outcomeController');
   const cases = require('../controllers/caseController');
   const contact = require('../controllers/contactController');
-  //const upload = require('../controllers/uploadController');
-  //const home = require('../controllers/homeController');
+  const operator = require('../controllers/operatorController');
+  const kam = require('../controllers/kamController');
 
   // acc Routes
   app.route('/accounts')
@@ -57,4 +57,24 @@ module.exports = function(app) {
     .get(contact.read_a_contact)
     .put(contact.update_a_contact)
     .delete(contact.delete_a_contact);
+
+  // operator Routes
+  app.route('/operators')
+    .get(operator.list_all_operators)
+    .post(operator.create_an_operator);
+
+  app.route('/operators/:operatorId')
+    .get(operator.read_an_operator)
+    .put(operator.update_an_operator)
+    .delete(operator.delete_an_operator);
+
+  // kam Routes
+  app.route('/kams')
+    .get(kam.list_all_kams)
+    .post(kam.create_a_kam);
+
+  app.route('/kams/:kamId')
+    .get(kam.read_a_kam)
+    .put(kam.update_a_kam)
+    .delete(kam.delete_a_kam);
 };
