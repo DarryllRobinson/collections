@@ -47,7 +47,7 @@ class App extends Component {
             component={CustomerComponent}
             checkingSession={this.state.checkingSession}
           />
-          <SecuredRoute exact path='/uploadPage'
+          <SecuredRoute exact path='/upload'
             component={UploadComponent}
             checkingSession={this.state.checkingSession}
           />

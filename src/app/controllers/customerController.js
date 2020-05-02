@@ -5,7 +5,6 @@ const Customer = require('../models/customerModel.js');
 exports.list_all_customers = function(req, res) {
   Customer.getAllCustomer(function(err, customer) {
 
-    console.log('controller')
     if (err)
       res.send(err);
       //console.log('res', customer);

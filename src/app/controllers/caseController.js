@@ -5,7 +5,6 @@ const Case = require('../models/caseModel.js');
 exports.list_all_cases = function(req, res) {
   Case.getAllCase(function(err, cases) {
 
-    console.log('controller')
     if (err)
       res.send(err);
       //console.log('res', case);

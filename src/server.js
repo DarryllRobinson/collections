@@ -80,24 +80,81 @@ app.post('/upload', function(req, res) {
       } else {
           exceltojson = xlstojson;
       }
-      console.log(req.file);
+      //console.log(req.file);
       try {
-          exceltojson({
+        exceltojson({
               input: req.file.path,
-              output: req.file.destination + '/output/output.json', //since we don't need output.json
+              output: req.file.destination + '/output/' + Date.now() + '-output.json', //since we don't need output.json
               lowerCaseHeaders: false
           }, function(err,result){
               if(err) {
-                  return res.json({error_code:1,err_desc:err, data: null});
+                console.log('err: ', err);
+                return res.json({error_code:1,err_desc:err, data: null});
               }
-              return res.json({error_code:0,err_desc:null, data: result});
+              //console.log('result: ', result);
+              /*result.map(element => {
+                let cols = [];
+                //cols = [...element.keys()];
+                let vals = [];
+                for (let [key, value] of Object.entries(element)) {
+                  cols.push(key);
+                  vals.push(value);
+                };
+                let allVals = [];
+                allVals.push(vals);
+                //console.log('allVals: ', allVals);
+                insertSql(cols, allVals);
+                //console.log('cols: ', cols);
+                //console.log('vals: ', vals);
+              });*/
+              bulkInsert(mc, 'cases', result, (error, response) => {
+                if (error) {
+                  console.log('bulkInsert error: ', error);
+                  res.send(error);
+                }
+                console.log('Successful insert!');
+                //res.json(response);
+              });
+              console.log('Successful upload!');
+              res.json({error_code:0,err_desc:null, data: result});
           })
       } catch (e){
-          res.json({error_code:1,err_desc:"Corupted excel file"});
+        console.log('caught mistake');
+          return res.json({error_code:1,err_desc:"Corupted excel file"});
       }
   })
 
 });
+
+function bulkInsert(connection, table, objectArray, callback) {
+  let keys = Object.keys(objectArray[0]);
+  let values = objectArray.map( obj => keys.map( key => obj[key]));
+
+  // replace 'NULL' with NULL
+  values.map(outside => {
+    outside.forEach(function(e, i) {
+      if (e === 'NULL') {
+        outside[i] = null;
+      }
+    });
+  });
+
+  let sql = 'INSERT INTO ' + table + ' (' + keys.join(', ') + ') VALUES ?';
+  mc.query(sql, [values], function (error, results, fields) {
+    if (error) callback(error);
+    callback(null, results);
+  });
+}
+
+function insertSql(columns, values) {
+  const sql = `INSERT INTO cases ${columns} VALUES ?`;
+  mc.query(sql, [values], (err, results, fields) => {
+    if(err) {
+      return console.error(err.message);
+    }
+    console.log('Row inserted: ', results.affectedRows);
+  });
+}
 
 app.post('/xxxupload',function(req, res) {
 

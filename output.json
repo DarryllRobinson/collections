@@ -1,0 +1,1 @@
+[{"id,AccountNumber,DateCreated,CreatedBy,CurrentAssignment,InitialAssignment,DateLastUpdated,LastUpdatedBy,ReopenedBy,DateReopened,ReassignedBy,DateReassigned,CaseReason,CaseNotes,CurrentStatus":"1,acc1,\"2020-04-23 12:00:00\",Darryll,Darryll,Darryll,\"2020-04-23 12:00:00\",Darryll,NULL,NULL,NULL,NULL,Reason,\"No notes yet\",Open"}]

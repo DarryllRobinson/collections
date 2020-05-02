@@ -5,7 +5,6 @@ const Outcome = require('../models/outcomeModel.js');
 exports.list_all_outcomes = function(req, res) {
   Outcome.getAllOutcome(function(err, outcome) {
 
-    console.log('controller')
     if (err)
       res.send(err);
       //console.log('res', outcome);

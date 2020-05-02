@@ -5,7 +5,6 @@ const Contact = require('../models/contactModel.js');
 exports.list_all_contacts = function(req, res) {
   Contact.getAllContact(function(err, contact) {
 
-    console.log('controller')
     if (err)
       res.send(err);
       //console.log('res', contact);

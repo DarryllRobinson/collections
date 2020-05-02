@@ -13,7 +13,7 @@ function NavBar(props) {
   }
 
   const upload = () => {
-    props.history.replace('/uploadPage');
+    props.history.replace('/upload');
   }
 
   return (
