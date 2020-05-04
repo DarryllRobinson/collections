@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="Table1">
+	<Table>
+		<Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="3" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="4" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="5" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="6" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="7" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="8" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="9" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="10" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="11" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="12" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="13" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="14" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="15" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="16" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="17" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="18" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="19" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="20" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="21" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="22" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="23" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="24" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="25" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="26" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="27" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="28" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="29" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="30" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Column ss:Index="31" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Row>
+			<Cell><Data ss:Type="String">ticketId</Data></Cell>
+			<Cell><Data ss:Type="String">agentId</Data></Cell>
+			<Cell><Data ss:Type="String">clientId</Data></Cell>
+			<Cell><Data ss:Type="String">clientCell</Data></Cell>
+			<Cell><Data ss:Type="String">storeId</Data></Cell>
+			<Cell><Data ss:Type="String">hostRef</Data></Cell>
+			<Cell><Data ss:Type="String">storeAgent</Data></Cell>
+			<Cell><Data ss:Type="String">status</Data></Cell>
+			<Cell><Data ss:Type="String">opened</Data></Cell>
+			<Cell><Data ss:Type="String">closed</Data></Cell>
+			<Cell><Data ss:Type="String">reason</Data></Cell>
+			<Cell><Data ss:Type="String">resolution</Data></Cell>
+			<Cell><Data ss:Type="String">escalatedId</Data></Cell>
+			<Cell><Data ss:Type="String">notes</Data></Cell>
+			<Cell><Data ss:Type="String">accountAge</Data></Cell>
+			<Cell><Data ss:Type="String">promiseToPayDate</Data></Cell>
+			<Cell><Data ss:Type="String">promiseToPayAmount</Data></Cell>
+			<Cell><Data ss:Type="String">debitOrderResubmissionsDate</Data></Cell>
+			<Cell><Data ss:Type="String">debitOrderResubmissionsAmount</Data></Cell>
+			<Cell><Data ss:Type="String">telephone1</Data></Cell>
+			<Cell><Data ss:Type="String">telephone2</Data></Cell>
+			<Cell><Data ss:Type="String">telephone3</Data></Cell>
+			<Cell><Data ss:Type="String">telephone4</Data></Cell>
+			<Cell><Data ss:Type="String">telephone5</Data></Cell>
+			<Cell><Data ss:Type="String">telephone6</Data></Cell>
+			<Cell><Data ss:Type="String">telephone7</Data></Cell>
+			<Cell><Data ss:Type="String">telephone8</Data></Cell>
+			<Cell><Data ss:Type="String">telephone9</Data></Cell>
+			<Cell><Data ss:Type="String">telephone10</Data></Cell>
+			<Cell><Data ss:Type="String">reopenedBy</Data></Cell>
+			<Cell><Data ss:Type="String">killFileUploadedBy</Data></Cell>
+		</Row>
+
+		<Row>
+			<Cell><Data ss:Type="Number">1</Data></Cell>
+			<Cell><Data ss:Type="String">agent123</Data></Cell>
+			<Cell><Data ss:Type="String">client123</Data></Cell>
+			<Cell><Data ss:Type="String">012345</Data></Cell>
+			<Cell><Data ss:Type="String">store123</Data></Cell>
+			<Cell><Data ss:Type="String">hostref</Data></Cell>
+			<Cell><Data ss:Type="String">storeagent</Data></Cell>
+			<Cell><Data ss:Type="String">Open</Data></Cell>
+			<Cell><Data ss:Type="String">2020-04-30 11:11:11</Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String">012345</Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+			<Cell><Data ss:Type="String"></Data></Cell>
+		</Row>	</Table>
+</Worksheet>
+</Workbook>

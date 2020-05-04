@@ -37,8 +37,15 @@ exports.read_an_account = function(req, res) {
 };
 
 exports.update_an_account = function(req, res) {
-  Account.updateAccountById(req.params.accountId, new Account(req.body), function(err, account) {
-    if (err) res.send(err);
+  console.log('req.body: ', req.body);
+  let arr = [];
+  arr.push(req.body);
+  console.log('arr: ', arr);
+  Account.updateAccountById(req.params.accountId, arr, function(err, account) {
+    if (err) {
+      console.log('err: ', err);
+      res.send(err);
+    }
     res.json(account);
   })
 }

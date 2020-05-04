@@ -251,19 +251,10 @@ function bulkInsert(connection, table, objectArray, callback) {
   });
 
   let sql = 'INSERT INTO ' + table + ' (' + keys.join(', ') + ') VALUES ?';
+  console.log('[values]: ', values);
   mc.query(sql, [values], function (error, results, fields) {
     if (error) callback(error);
     callback(null, results);
-  });
-}
-
-function insertSql(columns, values) {
-  const sql = `INSERT INTO cases ${columns} VALUES ?`;
-  mc.query(sql, [values], (err, results, fields) => {
-    if(err) {
-      return console.error(err.message);
-    }
-    console.log('Row inserted: ', results.affectedRows);
   });
 }
 

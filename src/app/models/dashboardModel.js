@@ -20,7 +20,7 @@ Dashboard.createDashboard = function(newDashboard, result) {
 };
 
 Dashboard.getAllDashboard = function (result) {
-  sql.query("Select outcomeId, operators.FirstName as opFirst, kams.FirstName as kamFirst, operators.OperatorShortCode, customers.CustomerShortCode, accounts.TotalBalance, accounts.Days30, accounts.Days60, accounts.Days90, accounts.Days120 from outcomes, cases, accounts, customers, operators, kams where f_caseId = caseId and f_accountId = accountId and f_customerId = customerId and f_operatorId = operatorId and f_kamId = kamId;", function (err, res) {
+  sql.query("Select accountId, outcomeId, operators.FirstName as opFirst, kams.FirstName as kamFirst, operators.OperatorShortCode, customers.CustomerShortCode, accounts.TotalBalance, accounts.Days30, accounts.Days60, accounts.Days90, accounts.Days120 from outcomes, cases, accounts, customers, operators, kams where f_caseId = caseId and f_accountId = accountId and f_customerId = customerId and f_operatorId = operatorId and f_kamId = kamId;", function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);

@@ -115,6 +115,15 @@ class Upload extends Component {
         <div className="form-group">
           <Progress max="100" color="success" value={this.state.loaded} >{Math.round(this.state.loaded,2) }%</Progress>
         </div>
+
+        <label>Upload your ticket file</label>
+        <input type="file" name="ticketssql" onChange={this.onChangeHandler}/>
+        <button type="button" className="btn btn-success btn-primary" onClick={this.onClickHandler}>
+          Upload
+        </button>
+        <div className="form-group">
+          <Progress max="100" color="success" value={this.state.loaded} >{Math.round(this.state.loaded,2) }%</Progress>
+        </div>
       </div>
     )
   }

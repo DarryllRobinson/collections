@@ -3,7 +3,7 @@ import {Route, withRouter, Switch} from 'react-router-dom';
 import auth0Client from './Auth/Auth';
 import NavBar from './NavBar/NavBar';
 import Callback from './Callback/Callback';
-import Accounts from './Accounts/Accounts';
+import Account from './Account/Account';
 import Customers from './Customers/Customers';
 import Customer from './Customer/Customer';
 import SecuredRoute from './SecuredRoute/SecuredRoute';
@@ -59,19 +59,19 @@ class App extends Component {
             checkingSession={this.state.checkingSession}
           />
 
-          <Route exact path='/accounts' component={AccountsComponent}/>
-          {/*<Route exact path='/customers' component={CustomersComponent}/>
-          <Route exact path='/customers/:customerId' component={CustomerComponent}/>
-          <Route exact path='/uploadPage' component={UploadComponent}/>*/}
+          <SecuredRoute exact path='/accounts/:accountId'
+            component={AccountComponent}
+            checkingSession={this.state.checkingSession}
+          />
         </Switch>
       </div>
     );
   }
 }
 
-const AccountsComponent = (props) => {
+const AccountComponent = (props) => {
   return (
-    <Accounts {...props}
+    <Account {...props}
     />
   );
 }

@@ -1,65 +1,51 @@
-'use strict';
+const array1 = ['a', 'b', 'c'];
+const iterator = array1.values();
 
-var Task = require('../model/appModel.js');
+for (const value of iterator) {
+  console.log(value);
+}
 
-exports.list_all_tasks = function(req, res) {
-  Task.getAllTask(function(err, task) {
+var arr = ["one","two","three"];
 
-    console.log('controller')
-    if (err)
-      res.send(err);
-      console.log('res', task);
-    res.send(task);
-  });
-};
+arr.forEach(function(part, index) {
+  arr[index] = "four";
+});
 
+alert(arr);
 
 
-exports.create_a_task = function(req, res) {
-  var new_task = new Task(req.body);
+console.log(Object.keys(object1));
 
-  //handles null error
-   if(!new_task.task || !new_task.status){
+for (let [key, value] of Object.entries(object1)) {
+  console.log(`${key}: ${value}`);
+}
 
-            res.status(400).send({ error:true, message: 'Please provide task/status' });
+var arr = ['a', , 'c'];
+var sparseKeys = Object.keys(arr);
+var denseKeys = [...arr.keys()];
+console.log(sparseKeys); // ['0', '2']
+console.log(denseKeys);  // [0, 1, 2]
 
-        }
-else{
+// execute the insert statment
+connection.query(stmt, [todos], (err, results, fields) => {
+  if (err) {
+    return console.error(err.message);
+  }
+  // get inserted rows
+  console.log('Row inserted:' + results.affectedRows);
+});
 
-  Task.createTask(new_task, function(err, task) {
-
-    if (err)
-      res.send(err);
-    res.json(task);
+function bulkInsert(connection, table, objectArray, callback) {
+  let keys = Object.keys(objectArray[0]);
+  let values = objectArray.map( obj => keys.map( key => obj[key]));
+  let sql = 'INSERT INTO ' + table + ' (' + keys.join(',') + ') VALUES ?';
+  connection.query(sql, [values], function (error, results, fields) {
+    if (error) callback(error);
+    callback(null, results);
   });
 }
-};
 
-
-exports.read_a_task = function(req, res) {
-  Task.getTaskById(req.params.taskId, function(err, task) {
-    if (err)
-      res.send(err);
-    res.json(task);
-  });
-};
-
-
-exports.update_a_task = function(req, res) {
-  Task.updateById(req.params.taskId, new Task(req.body), function(err, task) {
-    if (err)
-      res.send(err);
-    res.json(task);
-  });
-};
-
-
-exports.delete_a_task = function(req, res) {
-
-
-  Task.remove( req.params.taskId, function(err, task) {
-    if (err)
-      res.send(err);
-    res.json({ message: 'Task successfully deleted' });
-  });
-};
+bulkInsert(connection, 'my_table_of_objects', objectArray, (error, response) => {
+  if (error) res.send(error);
+  res.json(response);
+});

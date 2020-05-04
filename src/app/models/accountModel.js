@@ -45,11 +45,12 @@ Account.getAccountById = function (accountId, result) {
 
 
 Account.updateAccountById = function(id, account, result){
-  sql.query("UPDATE accounts SET account = ? WHERE accountId = ?", [account.account, id], function (err, res) {
+  sql.query("UPDATE accounts SET AccountNotes = ? WHERE accountId = ?", [account.AccountNotes, id], function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
    } else{
+     console.log('res in model: ', res);
      result(null, res);
     }
   });

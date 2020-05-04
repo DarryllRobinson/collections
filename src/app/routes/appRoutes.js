@@ -8,6 +8,7 @@ module.exports = function(app) {
   const operator = require('../controllers/operatorController');
   const kam = require('../controllers/kamController');
   const dash = require('../controllers/dashboardController');
+  const tick = require('../controllers/ticketController');
 
   // acc Routes
   app.route('/accounts')
@@ -82,4 +83,10 @@ module.exports = function(app) {
   // dash Routes
   app.route('/dashboard')
     .get(dash.list_all_dashboards);
+
+  // tickets Routes
+  app.route('/getopenticketssql')
+    .get(tick.list_all_open_tickets);
+  app.route('/getclosedticketssql')
+    .get(tick.list_all_closed_tickets);
 };
